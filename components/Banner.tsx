@@ -13,26 +13,20 @@ function Banner({ movies }: Props) {
   const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
-    if (movies.length > 0) {
-      setMovie(movies[Math.floor(Math.random() * movies.length)]);
-    }
+    setMovie(movies[Math.floor(Math.random() * movies.length)]);
   }, [movies]);
 
-  // If movie is not defined yet, or imagePath is undefined, return null
-  if (!movie || !movie.backdrop_path || !movie.poster_path) {
-    return null;
+  if (!movie) {
+    return null; // or render a loading state
   }
 
-  const imagePath = movie.backdrop_path || movie.poster_path;
-  const imageUrl = `${baseUrl}${imagePath}`;
-
-  console.log('Constructed Image URL:', imageUrl);
+  const img = movie?.backdrop_path || movie?.poster_path;
 
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
         <Image
-          src={imageUrl}
+          src={`${baseUrl}${img}`}
           alt="netflixOriginal"
           fill
           style={{ objectFit: "cover" }}
@@ -41,10 +35,10 @@ function Banner({ movies }: Props) {
       </div>
 
       <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl  ">
-        {movie.title || movie.name || movie.original_name}
+        {movie?.title || movie?.name || movie?.original_name}
       </h1>
       <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl ">
-        {movie.overview}
+        {movie?.overview}
       </p>
       <div className="flex space-x-3 ">
         <button className="bannerButton bg-white text-black">
