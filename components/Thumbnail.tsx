@@ -16,7 +16,9 @@ function Thumbnail({movie}:Props) {
         }`}
         className="rounded-sm object-cover md:rounded"
         fill
+        priority={true}
         alt=''
+        sizes='(min-width: 180px)'
       />
     </div>
   )
