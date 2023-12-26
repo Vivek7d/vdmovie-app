@@ -18,13 +18,14 @@ useEffect(() => {
 let imagepath=''
 // Conditionally log the movie only if it is not null
 if (movie !== null) {
-  imagepath=movie?.backdrop_path || movie?.poster_path
+  const { backdrop_path, poster_path } = movie || {};
+  imagepath = backdrop_path || poster_path || ''; // Ensure imagepath is not undefined
   console.log(movie);
 }
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
-      {imagepath && (
+      {imagepath && baseUrl && (
         <Image
           src={`${baseUrl}${imagepath}`}
           alt="netflixOriginal"
