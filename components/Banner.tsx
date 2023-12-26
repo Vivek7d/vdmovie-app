@@ -17,28 +17,32 @@ function Banner({ movies }: Props) {
   }, [movies]);
 
   if (!movie) {
-    return null; // or render a loading state
+    // Return null or some loading/error state if movies are still loading or an error occurred.
+    return null;
   }
 
-  const img = movie?.backdrop_path || movie?.poster_path;
+  const { title, name, original_name, overview, backdrop_path, poster_path } = movie;
+  console.log(movie);
 
   return (
-    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
-      <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
-        <Image
-          src={`${baseUrl}${img}`}
-          alt="netflixOriginal"
-          fill
-          style={{ objectFit: "cover" }}
-          priority={true}
-        />
-      </div>
+    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
+      {backdrop_path || poster_path ? (
+        <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
+          <Image
+            src={`${baseUrl}${backdrop_path || poster_path}`}
+            alt="netflixOriginal"
+            fill
+            style={{ objectFit: "cover" }}
+            priority={true}
+          />
+        </div>
+      ) : null}
 
-      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl  ">
-        {movie?.title || movie?.name || movie?.original_name}
+      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl ">
+        {title || name || original_name}
       </h1>
-      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl ">
-        {movie?.overview}
+      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
+        {overview}
       </p>
       <div className="flex space-x-3 ">
         <button className="bannerButton bg-white text-black">
