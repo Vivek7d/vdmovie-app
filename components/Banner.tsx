@@ -1,14 +1,15 @@
-"use client";
-import { baseUrl } from "@/constants/movie";
-import { Movie } from "@/typings";
+"use client"
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa6";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { baseUrl } from "@/constants/movie";
+import { Movie } from "@/typings";
 
-import React, { useEffect, useState } from "react";
 interface Props {
   movies: Movie[];
 }
+
 function Banner({ movies }: Props) {
   const [movie, setMovie] = useState<Movie | null>(null);
 
@@ -22,8 +23,11 @@ function Banner({ movies }: Props) {
   }
 
   const { title, name, original_name, overview, backdrop_path, poster_path } = movie;
-  const imagePath = `${baseUrl}${backdrop_path || poster_path}`;
-console.log('Image Path:', imagePath);
+
+  const handleImageError = () => {
+    // Handle image loading error (e.g., display a placeholder image or a default image).
+    console.error("Error loading image");
+  };
 
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
@@ -35,9 +39,13 @@ console.log('Image Path:', imagePath);
             fill
             style={{ objectFit: "cover" }}
             priority={true}
+            onError={handleImageError}
           />
         </div>
-      ) : null}
+      ) : (
+        // Render a placeholder or default image if both paths are undefined.
+        <div className="placeholder-image">Placeholder Image</div>
+      )}
 
       <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl ">
         {title || name || original_name}
