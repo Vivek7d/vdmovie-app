@@ -3,20 +3,10 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import requests from "@/utils/requests";
-import { Movie } from "@/typings";
 import Row from "@/components/Row";
 
 
-interface Props {
-  netflixOriginals: Movie[]
-  trendingNow: Movie[]
-  topRated: Movie[]
-  actionMovies: Movie[]
-  comedyMovies: Movie[]
-  horrorMovies: Movie[]
-  romanceMovies: Movie[]
-  documentaries: Movie[]
-}
+
 export default async function Home() {
   const movieData= await getData();
   return (
