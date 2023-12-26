@@ -44,7 +44,7 @@ function Header() {
         <IoSearch className="hidden h-6 w-6 sm:inline " />
         <p className="hidden lg:inline headerLink">Kids</p>
         <HiBell className="h-6 w-6" />
-        <Link href="/account">
+        <Link href="">
           <img
             src="https://rb.gy/g1pwyx"
             alt="account img"
