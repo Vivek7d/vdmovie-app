@@ -1,4 +1,3 @@
-'use client'
 import { Movie } from '@/typings'
 import Image from 'next/image'
 import React from 'react'

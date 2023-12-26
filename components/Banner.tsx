@@ -1,57 +1,37 @@
-"use client"
-import React, { useEffect, useState } from "react";
+"use client";
+import { baseUrl } from "@/constants/movie";
+import { Movie } from "@/typings";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa6";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import { baseUrl } from "@/constants/movie";
-import { Movie } from "@/typings";
 
+import React, { useEffect, useState } from "react";
 interface Props {
   movies: Movie[];
 }
-
 function Banner({ movies }: Props) {
   const [movie, setMovie] = useState<Movie | null>(null);
-
   useEffect(() => {
     setMovie(movies[Math.floor(Math.random() * movies.length)]);
   }, [movies]);
-
-  if (!movie) {
-    // Return null or some loading/error state if movies are still loading or an error occurred.
-    return null;
-  }
-
-  const { title, name, original_name, overview, backdrop_path, poster_path } = movie;
-
-  const handleImageError = () => {
-    // Handle image loading error (e.g., display a placeholder image or a default image).
-    console.error("Error loading image");
-  };
-
+  
   return (
-    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
-      {backdrop_path || poster_path ? (
-        <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
-          <Image
-            src={`${baseUrl}${backdrop_path || poster_path}`}
-            alt="netflixOriginal"
-            fill
-            style={{ objectFit: "cover" }}
-            priority={true}
-            onError={handleImageError}
-          />
-        </div>
-      ) : (
-        // Render a placeholder or default image if both paths are undefined.
-        <div className="placeholder-image">Placeholder Image</div>
-      )}
+    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
+      <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
+        <Image
+          src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
+          alt="netflixOriginal"
+          fill
+          style={{objectFit:"cover"}}
+          priority={true}
+        />
+      </div>
 
-      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl ">
-        {title || name || original_name}
+      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl  ">
+        {movie?.title || movie?.name || movie?.original_name}
       </h1>
-      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
-        {overview}
+      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl ">
+        {movie?.overview}
       </p>
       <div className="flex space-x-3 ">
         <button className="bannerButton bg-white text-black">
@@ -59,7 +39,7 @@ function Banner({ movies }: Props) {
           Play
         </button>
         <button className="bannerButton bg-[gray]/70">
-          More Info <IoIosInformationCircleOutline className="h-5 w-5 md:h-8 md:w-8" />
+          More Info <IoIosInformationCircleOutline  className="h-5 w-5 md:h-8 md:w-8"/>
         </button>
       </div>
     </div>
