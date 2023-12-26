@@ -18,11 +18,12 @@ export default function Banner({ movies }: Props) {
 
   // Select a random movie when component mounts or when movies change
   useEffect(() => {
-    if (movies.length > 0) {
+    
       const randomMovie = movies[Math.floor(Math.random() * movies.length)];
       setSelectedMovie(randomMovie);
-    }
+    
   }, [movies]);
+  console.log(movies);
 
   const router = useRouter();
 
