@@ -16,30 +16,35 @@ function Banner({ movies }: Props) {
     setMovie(movies[Math.floor(Math.random() * movies.length)]);
   }, [movies]);
 
-  // Ensure that the backdrop_path or poster_path is defined before using it
-  const imagePath = movie?.backdrop_path || movie?.poster_path;
+  if (!movie) {
+    // If movie is not defined yet, you can render a loading state or return null
+    return null;
+  }
+
+  const imagePath = movie.backdrop_path || movie.poster_path;
+  const imageUrl = `${baseUrl}${imagePath}`;
+
+  console.log('Constructed Image URL:', imageUrl);
 
   return (
-    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
+    <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
-        {imagePath && (
-          <Image
-            src={`${baseUrl}${imagePath}`}
-            alt="netflixOriginal"
-            fill
-            style={{ objectFit: "cover" }}
-            priority={true}
-          />
-        )}
+        <Image
+          src={imageUrl}
+          alt="netflixOriginal"
+          fill
+          style={{ objectFit: "cover" }}
+          priority={true}
+        />
       </div>
 
-      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl">
-        {movie?.title || movie?.name || movie?.original_name}
+      <h1 className="text-2xl font-bold md:text-4xl lg:text-6xl  ">
+        {movie.title || movie.name || movie.original_name}
       </h1>
-      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
-        {movie?.overview}
+      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl ">
+        {movie.overview}
       </p>
-      <div className="flex space-x-3">
+      <div className="flex space-x-3 ">
         <button className="bannerButton bg-white text-black">
           <FaPlay className="h-4 w-4 fill-black md:h-7 md:w-7" />
           Play
