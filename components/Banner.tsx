@@ -18,12 +18,9 @@ export default function Banner({ movies }: Props) {
 
   // Select a random movie when component mounts or when movies change
   useEffect(() => {
-    
-      const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-      setSelectedMovie(randomMovie);
-    
+    const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+    setSelectedMovie(randomMovie);
   }, [movies]);
-  console.log(movies);
 
   const router = useRouter();
 
@@ -32,10 +29,12 @@ export default function Banner({ movies }: Props) {
       <div className="absolute top-0 left-0 h-[95vh] w-screen -z-10">
         {selectedMovie && (
           <Image
-            src={`${baseUrl}/${selectedMovie?.backdrop_path || selectedMovie?.poster_path}`}
+            src={`${baseUrl}/${
+              selectedMovie?.backdrop_path || selectedMovie?.poster_path
+            }`}
             alt="Banner"
             fill
-        style={{objectFit:"cover"}}
+            style={{ objectFit: "cover" }}
           />
         )}
         <div className="absolute w-full h-32 bg-gradient-to-t from-gray-100 to-transparent bottom-0 z-20" />
@@ -45,7 +44,7 @@ export default function Banner({ movies }: Props) {
           selectedMovie?.name ||
           selectedMovie?.original_name}
       </h1>
-      <p className="max-w-xs text-shadow-md text-xs md:max-w-lg md:text-lg lg:max-w-2xl line-clamp-5">
+      <p className="max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
         {selectedMovie?.overview}
       </p>
       <div className="flex space-x-3">
