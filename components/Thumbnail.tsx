@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil'
 
 interface Props{
     movie:Movie 
-    // movie:Movie | DocumentData
+   
 }
 function Thumbnail({movie}:Props) {
 
