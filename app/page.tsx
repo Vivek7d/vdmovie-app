@@ -4,12 +4,17 @@ import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import requests from "@/utils/requests";
 import Row from "@/components/Row";
+import Middle from "@/components/Middle";
+
 
 
 
 export default async function Home() {
   const movieData= await getData();
+
   return (
+    
+
     <div className="relative h-screen bg-gradient-to-b">
       <Header  />
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
@@ -25,7 +30,9 @@ export default async function Home() {
           <Row title="Documentaries" movies={movieData.documentaries} />
         </section>
       </main>
+    <Middle />
     </div>
+
   );
 }
 const getData = async () => {

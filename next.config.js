@@ -13,6 +13,11 @@ module.exports = {
         hostname: 'image.tmdb.org',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'rb.gy',
+        port: '',
+      },
      
     ],
   },

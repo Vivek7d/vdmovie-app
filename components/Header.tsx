@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { HiBell } from "react-icons/hi";
 import Link from "next/link";
+import useAuth from "@/hooks/AuthContext";
 
 function Header() {
   const [isScrolled,setScrolled]= useState(false);
+  const {logout} = useAuth()
 
   useEffect(()=>{
     const handleScroll=()=>{
@@ -24,7 +26,7 @@ function Header() {
   return (
     <header className={ `${isScrolled && 'bg-[#141414]'}`} >
       <div className="flex items-center space-x-2 md:space-x-10">
-        <img
+        <Image
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
           alt="logo"
           width={100}
@@ -43,14 +45,14 @@ function Header() {
       <div className="flex items-center space-x-4 text-sm font-light">
         <IoSearch className="hidden h-6 w-6 sm:inline " />
         <p className="hidden lg:inline headerLink">Kids</p>
-        <HiBell className="h-6 w-6" />
-        <Link href="">
+       
           <img
+          onClick={logout}
             src="https://rb.gy/g1pwyx"
             alt="account img"
             className="cursor-pointer rounded"
           />
-        </Link>
+       
       </div>
     </header>
   );
