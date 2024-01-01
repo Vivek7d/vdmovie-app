@@ -5,6 +5,8 @@ import { IoSearch } from "react-icons/io5";
 import { HiBell } from "react-icons/hi";
 import Link from "next/link";
 import useAuth from "@/hooks/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Header() {
   const [isScrolled,setScrolled]= useState(false);
@@ -23,6 +25,16 @@ function Header() {
       window.removeEventListener("scroll",handleScroll)
     }
   },[])
+  const notifyLogOut=()=>{
+    toast.success("Logout Sucessful",{position: "top-right",
+    autoClose: 4000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",})
+  }
   return (
     <header className={ `${isScrolled && 'bg-[#141414]'}`} >
       <div className="flex items-center space-x-2 md:space-x-10">
@@ -47,13 +59,14 @@ function Header() {
         <p className="hidden lg:inline headerLink">Kids</p>
        
           <img
-          onClick={logout}
+          onClick={()=>{logout();notifyLogOut();}}
             src="https://rb.gy/g1pwyx"
             alt="account img"
             className="cursor-pointer rounded"
           />
-       
+
       </div>
+      
     </header>
   );
 }

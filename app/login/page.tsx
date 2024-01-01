@@ -1,33 +1,57 @@
-"use client"
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import useAuth from '@/hooks/AuthContext'
+"use client";
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import useAuth from "@/hooks/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Inputs {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 function Login() {
-  const [login, setLogin] = useState(false)
-  const { signIn, signUp } = useAuth()
+  const [login, setLogin] = useState(false);
+  const { signIn, signUp } = useAuth();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
-      await signIn(email, password)
+      await signIn(email, password);
     } else {
-      await signUp(email, password)
+      await signUp(email, password);
     }
-  }
+  };
 
+  const notifyLogin = () => {
+    setLogin(true);
+    toast.success("Login Sucessful",{position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",});
+  };
+  const notifySignUp = () => {
+    setLogin(false);
+    toast.success("Sign Up Sucessful",{position: "top-right",
+    autoClose: 4000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",});
+  };
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
       <Head>
@@ -35,7 +59,7 @@ function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image
-        alt=''
+        alt=""
         src="https://rb.gy/p2hphi"
         layout="fill"
         className="-z-10 !hidden opacity-60 sm:!inline"
@@ -60,7 +84,7 @@ function Login() {
               type="email"
               placeholder="Email"
               className="input"
-              {...register('email', { required: true })}
+              {...register("email", { required: true })}
             />
             {errors.email && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
@@ -73,7 +97,7 @@ function Login() {
               type="password"
               placeholder="Password"
               className="input"
-              {...register('password', { required: true })}
+              {...register("password", { required: true })}
             />
             {errors.password && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
@@ -85,24 +109,25 @@ function Login() {
 
         <button
           className="w-full rounded bg-[#e50914] py-3 font-semibold"
-          onClick={() => setLogin(true)}
+          onClick={notifyLogin}
         >
           Sign In
         </button>
 
         <div className="text-[gray]">
-          New to Netflix?{' '}
+          New to Netflix?{" "}
           <button
             type="submit"
             className="text-white hover:underline"
-            onClick={() => setLogin(false)}
+            onClick={notifySignUp}
           >
             Sign up now
           </button>
         </div>
+        <ToastContainer/>
       </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
