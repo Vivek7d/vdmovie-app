@@ -2,9 +2,9 @@
 import React from "react";
 function Home() {
   return (
-    <div className="absolute top-[730px] md:top-[910px] bg-black w-full ">
+    <div className="absolute top-[730px] md:top-[1500px] lg:top-[900px] bg-black w-full ">
       <div className="p-1 bg-[#333]"></div>
-      <div className="flex flex-col md:flex-row justify-around bg-black mix-blend-screen">
+      <div className="flex flex-col lg:flex-row justify-around bg-black mix-blend-screen">
         <img
           className="pb-14 md:pl-36"
           src="https://i.postimg.cc/TY7PjSR3/feature-1.png"
@@ -22,7 +22,7 @@ function Home() {
       </div>
       <div className="p-1 bg-[#333]"></div>
 
-      <div className="flex flex-col-reverse md:flex-row justify-around md:p-32 bg-black mix-blend-screen">
+      <div className="flex flex-col-reverse lg:flex-row justify-around md:p-32 bg-black mix-blend-screen">
         <div className="p-7 md:p-10 md:pt-24">
           <h1 className="font-bold text-2xl pb-5 md:text-5xl md:pt-10">
             Download your shows to watch offline
@@ -39,7 +39,7 @@ function Home() {
       </div>
       <div className="p-1 bg-[#333]"></div>
 
-      <div className="flex flex-col md:flex-row justify-around bg-black mix-blend-screen">
+      <div className="flex flex-col lg:flex-row justify-around bg-black mix-blend-screen">
         <img
           className="pb-14 pt-7 md:pl-36"
           src="https://i.postimg.cc/nzJVcf10/feature-3.png"
@@ -57,7 +57,7 @@ function Home() {
       </div>
       <div className="p-1 bg-[#333]"></div>
 
-      <div className="flex flex-col-reverse md:flex-row justify-around md:p-32 bg-black mix-blend-screen">
+      <div className="flex flex-col-reverse lg:flex-row justify-around md:p-32 bg-black mix-blend-screen">
         <div className="p-7 md:p-10 md:pt-24">
           <h1 className="font-bold text-2xl pb-5 md:text-5xl md:pt-10">
             Create profiles for kids
