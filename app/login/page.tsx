@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "@/hooks/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Home from "@/components/Home";
 
 interface Inputs {
   email: string;
@@ -32,28 +33,32 @@ function Login() {
 
   const notifyLogin = () => {
     setLogin(true);
-    toast.success("Login Sucessful",{position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",});
+    toast.success("Login Sucessful", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   const notifySignUp = () => {
     setLogin(false);
-    toast.success("Sign Up Sucessful",{position: "top-right",
-    autoClose: 4000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",});
+    toast.success("Sign Up Sucessful", {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   return (
-    <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
+    <div className="absolute flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
       <Head>
         <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
@@ -75,7 +80,7 @@ function Login() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14"
+        className="absolute mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14"
       >
         <h1 className="text-4xl font-semibold">Sign In</h1>
         <div className="space-y-4">
@@ -124,8 +129,9 @@ function Login() {
             Sign up now
           </button>
         </div>
-        <ToastContainer/>
+        <ToastContainer />
       </form>
+      <Home />
     </div>
   );
 }
