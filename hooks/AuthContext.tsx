@@ -10,6 +10,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { auth } from '../firebase'
+import { toast } from 'react-toastify'
 
 interface IAuth {
   user: User | null
@@ -68,8 +69,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser(userCredential.user)
         router.push('/')
         setLoading(false)
+        toast.success("Sign Up Sucessful")
       })
-      .catch((error) => alert(error.message))
+      .catch((error) => toast.error(error.message))
       .finally(() => setLoading(false))
   }
 
@@ -81,8 +83,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser(userCredential.user)
         router.push('/')
         setLoading(false)
+        toast.success("Login Sucessful")
       })
-      .catch((error) => alert(error.message))
+      .catch((error) => toast.error(error.message))
       .finally(() => setLoading(false))
   }
 

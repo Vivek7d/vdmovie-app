@@ -5,6 +5,7 @@ import Banner from "@/components/Banner";
 import requests from "@/utils/requests";
 import Row from "@/components/Row";
 import Middle from "@/components/Middle";
+import Footer from "@/components/Footer";
 
 
 
@@ -29,8 +30,10 @@ export default async function Home() {
           <Row title="Romance Movies" movies={movieData.romanceMovies} />
           <Row title="Documentaries" movies={movieData.documentaries} />
         </section>
+        
       </main>
     <Middle />
+    <Footer />
     </div>
 
   );

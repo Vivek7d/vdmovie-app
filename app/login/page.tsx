@@ -31,32 +31,7 @@ function Login() {
     }
   };
 
-  const notifyLogin = () => {
-    setLogin(true);
-    toast.success("Login Sucessful", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-  const notifySignUp = () => {
-    setLogin(false);
-    toast.success("Sign Up Sucessful", {
-      position: "top-right",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+
   return (
     <div className="absolute flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
       <Head>
@@ -114,7 +89,7 @@ function Login() {
 
         <button
           className="w-full rounded bg-[#e50914] py-3 font-semibold"
-          onClick={notifyLogin}
+          onClick={()=>setLogin(true)}
         >
           Sign In
         </button>
@@ -124,7 +99,7 @@ function Login() {
           <button
             type="submit"
             className="text-white hover:underline"
-            onClick={notifySignUp}
+            onClick={()=>setLogin(false)}
           >
             Sign up now
           </button>
